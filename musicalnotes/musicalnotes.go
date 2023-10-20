@@ -7,7 +7,7 @@ import (
 )
 
 var notes = [7]string{"Do", "Re", "Mi", "Fa", "Sol", "La", "Si"}
-var positions = [7]int{1, 2, 3, 4, 5, 6, 7}
+var positions = [7]int{0, 1, 2, 3, 4, 5, 6}
 
 type MusicalNote struct {
 	Note     string
@@ -90,5 +90,5 @@ func (n *MusicalNote) CheckPosition() bool {
 	var iPosition int
 	fmt.Scanln(&iPosition)
 
-	return (*n).Position == iPosition
+	return (*n).Position+1 == iPosition
 }
