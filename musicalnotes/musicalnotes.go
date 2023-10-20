@@ -7,7 +7,7 @@ type MusicalNote struct {
 	sound string
 }
 
-func (n *MusicalNote) getNext() string {
+func (n *MusicalNote) GetNext() string {
 	var next string
 	for i, v := range notes {
 		if v == (*n).note {
@@ -22,7 +22,7 @@ func (n *MusicalNote) getNext() string {
 	return next
 }
 
-func (n *MusicalNote) getPrevious() string {
+func (n *MusicalNote) GetPrevious() string {
 	var next string
 	for i, v := range notes {
 		if v == (*n).note {
