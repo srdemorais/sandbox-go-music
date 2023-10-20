@@ -3,8 +3,8 @@ package musicalnotes
 var notes = [7]string{"Do", "Re", "Mi", "Fa", "So", "La", "Si"}
 
 type MusicalNote struct {
-	note  string
-	sound string
+	Note  string
+	Sound string
 }
 
 func (n *MusicalNote) GetNext() string {
