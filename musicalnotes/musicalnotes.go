@@ -1,6 +1,9 @@
 package musicalnotes
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 var notes = [7]string{"Do", "Re", "Mi", "Fa", "So", "La", "Si"}
 
@@ -9,9 +12,13 @@ type MusicalNote struct {
 	Sound string
 }
 
-func (n *MusicalNote) TestUser() {
-	(*n).CheckNext()
-	(*n).CheckPrevious()
+func Init() MusicalNote {
+	rand.Seed(time.Now().Unix()) // initialize global pseudo random generator
+	return notes[rand.Intn(len(notes))]
+}
+
+func (n *MusicalNote) TestUser() bool {
+	return (*n).CheckNext() && (*n).CheckPrevious()
 }
 
 func (n *MusicalNote) GetNext() string {
@@ -44,22 +51,22 @@ func (n *MusicalNote) GetPrevious() string {
 	return next
 }
 
-func (n *MusicalNote) CheckNext() {
+func (n *MusicalNote) CheckNext() bool {
 	next := (*n).GetNext()
 	fmt.Printf("What is the note after \"%v\" ? ", (*n).Note)
 
 	var iNext string
 	fmt.Scanln(&iNext)
 
-	fmt.Println("Result: ", next == iNext)
+	return next == iNext
 }
 
-func (n *MusicalNote) CheckPrevious() {
+func (n *MusicalNote) CheckPrevious() bool {
 	previous := (*n).GetPrevious()
 	fmt.Printf("What is the note before \"%v\" ? ", (*n).Note)
 
 	var iPrevious string
 	fmt.Scanln(&iPrevious)
 
-	fmt.Println("Result: ", previous == iPrevious)
+	return previous == iPrevious
 }
