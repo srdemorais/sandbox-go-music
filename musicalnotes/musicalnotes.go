@@ -63,3 +63,4 @@ func (n *MusicalNote) CheckPrevious() {
 
 	fmt.Println("Result: ", previous == iPrevious)
 }
+
