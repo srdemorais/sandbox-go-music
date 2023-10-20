@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-var notes = [7]string{"Do", "Re", "Mi", "Fa", "So", "La", "Si"}
+var notes = [7]string{"Do", "Re", "Mi", "Fa", "Sol", "La", "Si"}
 
 type MusicalNote struct {
 	Note  string
