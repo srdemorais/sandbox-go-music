@@ -15,7 +15,9 @@ type MusicalNote struct {
 
 func Init() MusicalNote {
 	rand.Seed(time.Now().Unix()) // initialize global pseudo random generator
-	return notes[rand.Intn(len(notes))]
+	var oMusicalNote MusicalNote
+	oMusicalNote.Note = notes[rand.Intn(len(notes))]
+	return oMusicalNote
 }
 
 func (n *MusicalNote) TestUser() bool {
