@@ -10,7 +10,7 @@ type MusicalNote struct {
 func (n *MusicalNote) GetNext() string {
 	var next string
 	for i, v := range notes {
-		if v == (*n).note {
+		if v == (*n).Note {
 			if i == 6 {
 				next = notes[0]
 			} else {
@@ -25,7 +25,7 @@ func (n *MusicalNote) GetNext() string {
 func (n *MusicalNote) GetPrevious() string {
 	var next string
 	for i, v := range notes {
-		if v == (*n).note {
+		if v == (*n).Note {
 			if i == 0 {
 				next = notes[6]
 			} else {
