@@ -45,7 +45,7 @@ func (n *MusicalNote) GetPrevious() string {
 	if (*n).Position == 0 {
 		next = notes[6]
 	} else {
-		next = notes[i-1]
+		next = notes[(*n).Position-1]
 	}
 	return next
 }
