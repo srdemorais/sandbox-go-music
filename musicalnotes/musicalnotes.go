@@ -45,7 +45,7 @@ func (n *MusicalNote) GetPrevious() string {
 }
 
 func (n *MusicalNote) CheckNext() {
-	next := GetNext(n)
+	next := (*n).GetNext(n)
 	fmt.Printf("What is the note after \"%v\" ? ", next)
 
 	var iNext string
@@ -55,7 +55,7 @@ func (n *MusicalNote) CheckNext() {
 }
 
 func (n *MusicalNote) CheckPrevious() {
-	previous := GetPrevious(n)
+	previous := (*n).GetPrevious(n)
 	fmt.Printf("What is the note before \"%v\" ? ", previous)
 
 	var iPrevious string
