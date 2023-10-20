@@ -2,6 +2,7 @@ package musicalnotes
 
 import (
 	"fmt"
+	"math/rand"
 	"time"
 )
 
