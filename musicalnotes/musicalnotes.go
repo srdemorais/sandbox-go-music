@@ -5,9 +5,7 @@ import (
 	"math/rand"
 	"time"
 	"io"
-	"log"
 	"os"
-	"fmt"
 
 	"github.com/hajimehoshi/oto"
 
