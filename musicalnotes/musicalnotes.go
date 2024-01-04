@@ -9,8 +9,6 @@ import (
 	"os"
 	"fmt"
 
-	"github.com/srdemorais/sandbox-go-music/musicalnotes"
-
 	"github.com/hajimehoshi/oto"
 
 	"github.com/hajimehoshi/go-mp3"
