@@ -2,10 +2,11 @@ package musicalnotes
 
 import (
 	"fmt"
-	"math/rand"
-	"time"
 	"io"
+	"log"
+	"math/rand"
 	"os"
+	"time"
 
 	"github.com/hajimehoshi/oto"
 
@@ -14,6 +15,53 @@ import (
 
 var notes = [7]string{"Do", "Re", "Mi", "Fa", "Sol", "La", "Si"}
 var positions = [7]int{0, 1, 2, 3, 4, 5, 6}
+var outnotes [3]string
+var outsounds [3]string
+
+func getOut(note string, outnotes *[3]string, outsounds *[3]string) {
+	rand.Seed(time.Now().UnixNano())
+
+	var notes = [7]string{"Do", "Re", "Mi", "Fa", "Sol", "La", "Si"}
+	var sounds = [7]string{"C", "D", "E", "F", "G", "A", "B"}
+
+	var idx int
+	var randpos [3]int
+
+	// find the index of the input note
+	for i, v := range notes {
+		if v == note {
+			idx = i
+			break
+		}
+	}
+
+	// initialize randpos
+	randpos[0] = idx
+	p := 1
+	for i := 0; i < 7; i++ {
+		i = rand.Intn(7)
+		if i != idx {
+			randpos[p] = i
+			p++
+		}
+		if p > 2 {
+			break
+		}
+	}
+
+	// shuffle randpos
+	rand.Shuffle(len(randpos), func(i, j int) { randpos[i], randpos[j] = randpos[j], randpos[i] })
+
+	// set outnotes
+	for i := 0; i < 3; i++ {
+		outnotes[i] = notes[randpos[i]]
+	}
+
+	// set outsounds
+	for i := 0; i < 3; i++ {
+		outsounds[i] = sounds[randpos[i]]
+	}
+}
 
 type MusicalNote struct {
 	Note     string
@@ -33,7 +81,7 @@ func Init() MusicalNote {
 }
 
 func (n *MusicalNote) TestUser() bool {
-	return (*n).CheckNext() && (*n).CheckPrevious() && (*n).CheckPosition()
+	return (*n).CheckNext() && (*n).CheckPrevious() && (*n).CheckPosition() && (*n).CheckSound()
 }
 
 func (n *MusicalNote) GetNext() string {
@@ -99,9 +147,37 @@ func (n *MusicalNote) CheckPosition() bool {
 	return (*n).Position+1 == iPosition
 }
 
+func (n *MusicalNote) CheckSound() bool {
+	getOut((*n).Note, &outnotes, &outsounds)
+
+	p := -1
+	for i := 0; i < 3; i++ {
+		if outnotes[i] == (*n).Note {
+			p = i + 1
+			break
+		}
+	}
+
+	for _, v := range outsounds {
+		if err := RunNote(v); err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	fmt.Printf("What is the note position ? ")
+
+	var iPosition int
+	fmt.Scanln(&iPosition)
+
+	fmt.Println(outnotes)
+	fmt.Println(outsounds)
+	fmt.Println(p == iPosition)
+
+	return p == iPosition
+}
+
 func RunNote(note string) error {
 	f, err := os.Open("mp3/" + note + ".mp3")
-	fmt.Println("mp3/" + note + ".mp3")
 	if err != nil {
 		return err
 	}
@@ -121,7 +197,7 @@ func RunNote(note string) error {
 	p := c.NewPlayer()
 	defer p.Close()
 
-  fmt.Printf("Length: %d[bytes]\n", d.Length())
+	fmt.Printf("Length: %d[bytes]\n", d.Length())
 
 	if _, err := io.Copy(p, d); err != nil {
 		return err
