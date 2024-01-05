@@ -170,8 +170,6 @@ func (n *MusicalNote) CheckSound() bool {
 	fmt.Scanln(&iPosition)
 
 	fmt.Println(outnotes)
-	fmt.Println(outsounds)
-	fmt.Println(p == iPosition)
 
 	return p == iPosition
 }
