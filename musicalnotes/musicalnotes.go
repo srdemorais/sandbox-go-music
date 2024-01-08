@@ -21,7 +21,6 @@ var outsounds [3]string
 func getOut(note string, outnotes *[3]string, outsounds *[3]string) {
 	rand.Seed(time.Now().UnixNano())
 
-	var notes = [7]string{"Do", "Re", "Mi", "Fa", "Sol", "La", "Si"}
 	var sounds = [7]string{"C", "D", "E", "F", "G", "A", "B"}
 
 	var idx int
@@ -38,10 +37,10 @@ func getOut(note string, outnotes *[3]string, outsounds *[3]string) {
 	// initialize randpos
 	randpos[0] = idx
 	p := 1
-	for i := 0; i < 7; i++ {
-		i = rand.Intn(7)
-		if i != idx {
-			randpos[p] = i
+	for {
+		tmpIdx := rand.Intn(7)
+		if tmpIdx != idx {
+			randpos[p] = tmpIdx
 			p++
 		}
 		if p > 2 {
