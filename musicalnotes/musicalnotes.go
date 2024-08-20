@@ -125,17 +125,17 @@ func (n *MusicalNote) CheckPrevious() bool {
 
 func (n *MusicalNote) CheckPosition() bool {
 	fmt.Println("")
-	fmt.Println("11---------------------0------")
-	fmt.Println("10                   0        ")
-	fmt.Println("9------------------0----------")
-	fmt.Println("8                0            ")
-	fmt.Println("7--------------0--------------")
-	fmt.Println("6            0                ")
-	fmt.Println("5----------0------------------")
-	fmt.Println("4        0                    ")
-	fmt.Println("3------0----------------------")
-	fmt.Println("2    0                        ")
-	fmt.Println("1 -0-                         ")
+	fmt.Println("11----------------------------")
+	fmt.Println("10                            ")
+	fmt.Println("9-----------------------------")
+	fmt.Println("8                             ")
+	fmt.Println("7-----------------------------")
+	fmt.Println("6                             ")
+	fmt.Println("5-----------------------------")
+	fmt.Println("4                             ")
+	fmt.Println("3-----------------------------")
+	fmt.Println("2                             ")
+	fmt.Println("1 ---                         ")
 	fmt.Println("")
 
 	fmt.Printf("What is the note position ? ")
@@ -194,7 +194,7 @@ func RunNote(note string) error {
 	p := c.NewPlayer()
 	defer p.Close()
 
-	fmt.Printf("Length: %d[bytes]\n", d.Length())
+	// fmt.Printf("Length: %d[bytes]\n", d.Length())
 
 	if _, err := io.Copy(p, d); err != nil {
 		return err
