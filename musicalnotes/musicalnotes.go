@@ -158,8 +158,8 @@ func (n *MusicalNote) CheckSound() bool {
 	}
 
 	for _, v := range outsounds {
-		if err := runnote(v); err != nil {
-			log.fatal(err)
+		if err := RunNote(v); err != nil {
+			log.Fatal(err)
 		}
 	}
 
@@ -173,16 +173,16 @@ func (n *MusicalNote) CheckSound() bool {
 	fmt.Printf("Again...")
 
 	for _, v := range outsounds {
-		if err := runnote(v); err != nil {
-			log.fatal(err)
+		if err := RunNote(v); err != nil {
+			log.Fatal(err)
 		}
 	}
 
 	fmt.Printf("And again...")
 
 	for _, v := range outsounds {
-		if err := runnote(v); err != nil {
-			log.fatal(err)
+		if err := RunNote(v); err != nil {
+			log.Fatal(err)
 		}
 	}
 
