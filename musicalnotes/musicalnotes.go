@@ -80,7 +80,7 @@ func (n *MusicalNote) GetPrevious() string {
 }
 
 func (n *MusicalNote) CheckPosition() bool {
-	displayStaff()
+	DisplayStaff()
 
 	fmt.Printf("What is the note position ? ")
 
@@ -195,7 +195,7 @@ func RunNote(audioPath string) error {
 		four spaces that each represent a different musical pitch or in the case of a
 		ercussion staff, different percussion instruments.
 */
-func displayStaff() {
+func DisplayStaff() {
 	fmt.Println("")
 	fmt.Println("C6                      ---                   29")
 	fmt.Println("                                              28")
