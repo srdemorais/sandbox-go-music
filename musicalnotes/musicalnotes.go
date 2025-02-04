@@ -95,6 +95,7 @@ func (n *MusicalNote) CheckSound() bool {
 	guessNotes, pos := n.getGuessNotes()
 
 	for _, v := range guessNotes {
+    time.Sleep(time.Second)
 		if err := RunNote(v.AudioPath); err != nil {
 			log.Fatal(err)
 		}
@@ -114,6 +115,7 @@ func (n *MusicalNote) CheckSound() bool {
 		fmt.Printf("Again... ")
 
 		for _, v := range guessNotes {
+      time.Sleep(time.Second)
 			if err := RunNote(v.AudioPath); err != nil {
 				log.Fatal(err)
 			}
